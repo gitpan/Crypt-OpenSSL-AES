@@ -7,7 +7,7 @@
 #include "ppport.h"
 
 /*
-*  Copyright (C) 2006 DelTel, Inc.
+*  Copyright (C) 2006-2007 DelTel, Inc.
 *  
 *  This library is free software; you can redistribute it and/or modify
 *  it under the same terms as Perl itself, either Perl version 5.8.5 or,
@@ -20,6 +20,8 @@ typedef struct state {
 } *Crypt__OpenSSL__AES;
 
 MODULE = Crypt::OpenSSL::AES		PACKAGE = Crypt::OpenSSL::AES		
+
+PROTOTYPES: ENABLE
 
 BOOT:
 {
@@ -81,3 +83,8 @@ CODE:
 OUTPUT:
 	RETVAL
 
+void
+DESTROY(self)
+	Crypt::OpenSSL::AES self
+CODE:
+	Safefree(self);
